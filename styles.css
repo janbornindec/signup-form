@@ -4,6 +4,7 @@ html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -29,17 +30,20 @@ img {
 .left {
     margin: 0;
     display: flex;
-    background-image: url(mailboxes.jpg);
+    background-image: url(background.jpg);
     background-size: cover;
-    flex-grow: 2;
+    min-width: 50%;
+    flex-grow: 1;
 }
 
 .right {
     display: flex;
     justify-content: center;
+    align-items: stretch;
     flex-direction: column;
-    margin: 0 auto;
     padding: 0 50px;
+    margin: 0 auto;
+    flex-grow: 2;
 }
 
 h1 {
@@ -57,25 +61,34 @@ form {
 }
 
 form div {
-    padding-right: 30px;
     width: 100%;
 }
 
 section {
     display: flex;
     flex-direction: row;
+    gap: 70px;
     padding-bottom: 8px;
 }
 
 label {
     display: block;
+    text-transform: uppercase;
+    color:rgb(97, 97, 97);
+    font-size: 12px;
 }
 
 input {
     padding: 5px;
     width: 100%;
+    border: 0.5px solid rgb(97, 97, 97);
+    border-radius: 5px;
 }
 
 .submit {
     padding-top: 10px;
+}
+
+input:invalid {
+    border: 1px solid red;
 }
