@@ -50,10 +50,10 @@ function checkMobile() {
         mobileError.textContent = "";
         mobileError.className = "error";
     } else {
-        if (mobile.value != pattern) {
-            mobileError.textContent = "This has to be a mobile number, with or without country code.";
-        } else if (mobile.validity.tooShort) {
+        if (mobile.validity.tooShort) {
             mobileError.textContent = `Mobile number should be at least ${mobile.minLength} characters; you entered ${mobile.value.length}.`;
+        } else if (mobile.value != pattern) {
+            mobileError.textContent = "This has to be a mobile number, with or without country code. Digits only.";
         };
         mobileError.className = "error active";
     };
@@ -65,11 +65,26 @@ function checkPassword() {
         passwordError.textContent = "";
         passwordError.className = "error";
     } else {
-        if (password.value != pattern) {
-            passwordError.textContent = "Password should be at least 8 characters, containing at least one of the following: number, lower and uppercase letters and special characters.";
+        if (password.validity.valueMissing) {
+            passwordError.textContent = "Please enter a password."
         } else if (password.validity.tooShort) {
             passwordError.textContent = `Password should be at least ${password.minLength} characters; you entered ${password.value.length}.`;
+        } else if (password.value != pattern) {
+            passwordError.textContent = "Password should contain at least one of the following: number, lower and uppercase letters and special characters.";
         };
         passwordError.className = "error active";
+    };
+};
+
+function checkConfirmPassword() {
+    if (confirmPass.value !== password.value) {
+            confirmPassError.textContent = "Passwords do not match.";
+            confirmPassError.className = "error active";
+    } else if (confirmPass.validity.valueMissing) {
+            confirmPassError.textContent = "Please confirm your password.";
+            confirmPassError.className = "error active";
+    } else {
+        confirmPassError.textContent = "";
+        confirmPassError.className = "error";
     };
 };
