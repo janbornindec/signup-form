@@ -32,8 +32,8 @@ img {
     display: flex;
     background-image: url(background.jpg);
     background-size: cover;
-    min-width: 50%;
     flex-grow: 1;
+    flex-shrink: 1;
 }
 
 .right {
@@ -43,13 +43,13 @@ img {
     flex-direction: column;
     padding: 0 50px;
     margin: 0 auto;
-    flex-grow: 2;
+    width: 40%;
 }
 
 h1 {
     font-size: 20px;
     margin: 0;
-    padding: 15px 0;
+    padding: 20px 0;
 }
 
 form {
@@ -58,6 +58,7 @@ form {
     margin: 0;
     padding: 0;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 form div {
@@ -67,8 +68,9 @@ form div {
 section {
     display: flex;
     flex-direction: row;
-    gap: 70px;
-    padding-bottom: 8px;
+    padding-bottom: 15px;
+    gap: 50px;
+    width: 100%;
 }
 
 label {
@@ -76,6 +78,7 @@ label {
     text-transform: uppercase;
     color:rgb(97, 97, 97);
     font-size: 12px;
+    padding-bottom: 3px;
 }
 
 input {
@@ -90,5 +93,29 @@ input {
 }
 
 input:invalid {
-    border: 1px solid red;
+    border: 1.5px solid red;
+}
+
+input:focus {
+    border: 1px solid rgb(31, 46, 146);
+    box-shadow: 2px 5px 10px #b8b8b8;
+}
+
+.error {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    font-size: 80%;
+    color: white;
+    background-color: rgb(192, 40, 40);
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+}
+
+.error.active {
+    display: flex;
+    flex-direction: column;
+    padding: 0.3em;
+    flex-wrap: wrap;
 }
