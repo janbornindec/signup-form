@@ -1,15 +1,21 @@
 const form = document.querySelector("form");
 const inputs = document.querySelectorAll("#email");
 const email = document.getElementById("email");
+const first = document.getElementById("first-name");
+const last = document.getElementById("last-name");
 const mobile = document.getElementById("mobile");
 const password = document.getElementById("password");
 const confirmPass = document.getElementById("confirm-pass");
 const emailError = document.querySelector("#email + span.error");
+const firstError = document.querySelector("#first-name + span.error");
+const lastError = document.querySelector("#last-name + span.error");
 const mobileError = document.querySelector("#mobile + span.error");
 const passwordError = document.querySelector("#password + span.error");
 const confirmPassError = document.querySelector("#confirm-pass + span.error");
 
 inputListener(email);
+inputListener(first);
+inputListener(last);
 inputListener(mobile);
 inputListener(password);
 inputListener(confirmPass);
@@ -20,6 +26,10 @@ function inputListener(type) {
             checkEmail();
         } else if (type === mobile) {
             checkMobile();
+        } else if (type === first) {
+            checkFirst();
+        } else if (type === last) {
+            checkLast();
         } else if (type === password) {
             checkPassword();
         } else if (type === confirmPass) {
@@ -33,14 +43,36 @@ function checkEmail() {
         emailError.textContent = "";
         emailError.className = "error";
     } else {
-        if (email.validity.valueMissing) {
-            emailError.textContent = "Please enter an email address.";
-        } else if (email.validity.typeMismatch) {
+        if (email.validity.typeMismatch) {
             emailError.textContent = "This has to be an email address.";
         } else if (email.validity.tooShort) {
             emailError.textContent = `Email address should be at least ${email.minLength} characters; you entered ${email.value.length}.`;
         };
         emailError.className = "error active";
+    };
+};
+
+function checkFirst() {
+    if (first.validity.valid) {
+        firstError.textContent = "";
+        firstError.className = "error";
+    } else {
+        if (first.validity.valueMissing) {
+            firstError.textContent = "Please enter your first name.";
+        };
+        firstError.className = "error active";
+    };
+};
+
+function checkLast() {
+    if (last.validity.valid) {
+        lastError.textContent = "";
+        lastError.className = "error";
+    } else {
+        if (last.validity.valueMissing) {
+            lastError.textContent = "Please enter your last name.";
+        };
+        lastError.className = "error active";
     };
 };
 
@@ -88,3 +120,4 @@ function checkConfirmPassword() {
         confirmPassError.className = "error";
     };
 };
+
