@@ -1,5 +1,6 @@
 const form = document.querySelector("form");
-const inputs = document.querySelectorAll("#email");
+
+const errors = document.querySelectorAll(".error");
 const email = document.getElementById("email");
 const first = document.getElementById("first-name");
 const last = document.getElementById("last-name");
@@ -19,6 +20,7 @@ inputListener(last);
 inputListener(mobile);
 inputListener(password);
 inputListener(confirmPass);
+
 
 function inputListener(type) {
     type.addEventListener("input", () => {
@@ -121,3 +123,38 @@ function checkConfirmPassword() {
     };
 };
 
+form.addEventListener("submit",(e) => {
+    errors.forEach((error) => {
+        if (error.classList.contains("active")) {
+            checkEmail();
+            checkFirst();
+            checkLast();
+            checkMobile();
+            checkPassword();
+            e.preventDefault;
+        };
+    });
+});
+
+/*
+
+const inputs = document.querySelectorAll("input");
+function inputListener(inputs) {
+    inputs.forEach((input) => {
+        input.addEventListener("input", (e) => {
+            const errorType = e.target.id;
+            const errorContainer = document.querySelector(`${errorType} + span.error`);
+            if (errorType.validity.valid) {
+                errorContainer.textContent = "";
+                errorContainer.className = "error";
+            } else {
+                if (errorType.validity.typeMismatch) {
+                    errorContainer.textContent = "This field is empty.";
+                } else if (errorType.validity.tooShort) {
+                    errorContainer.textContent = `This should be at least ${errorType.minLength} characters; you entered ${errorType.value.length}.`;
+                };
+                errorContainer.className = "error active";
+            };
+        });
+    });
+};*/
